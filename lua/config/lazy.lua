@@ -20,6 +20,39 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import/override with your plugins
     { import = "plugins" },
+    {
+      "fatih/vim-go",  -- Essential Go tools (run :GoInstallBinaries after install)
+      ft = "go",
+      config = function()
+        vim.g.go_fmt_command = "goimports" -- Auto-format + fix imports
+      end,
+    },
+    {
+      "neovim/nvim-lspconfig",  -- LSP setup (already in LazyVim)
+      opts = {
+        servers = {
+          gopls = {},  -- Go LSP (install via Mason)
+        },
+      },
+    },
+    {
+      "mfussenegger/nvim-dap",  -- Debugging (DAP)
+      dependencies = {
+        "leoluz/nvim-dap-go",  -- Go debugger
+        config = function()
+          require("dap-go").setup()
+        end,
+      },
+    },
+    {
+      "ray-x/go.nvim",  -- Advanced Go features (optional)
+      dependencies = { "ray-x/guihua.lua" },
+      config = function()
+        require("go").setup()
+      end,
+      event = { "CmdlineEnter" },
+      ft = { "go", "gomod" },
+    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
