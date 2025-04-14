@@ -59,6 +59,36 @@ require("lazy").setup({
         ensure_installed = { "go", "gomod" },
       },
     },
+    {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,  -- Load only when needed
+    config = function()
+      require("nvim-web-devicons").setup()
+    end,
+  },
+  -- File explorer with icons (Nvim-Tree)
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-web-devicons" },
+    opts = {
+      view = {
+        width = 30,
+      },
+      renderer = {
+        icons = {
+          glyphs = {
+            folder = {
+              arrow_closed = "▶",
+              arrow_open = "▼",
+            },
+          },
+        },
+      },
+    },
+    keys = {
+      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
+    },
+  },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
