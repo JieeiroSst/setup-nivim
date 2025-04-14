@@ -53,6 +53,12 @@ require("lazy").setup({
       event = { "CmdlineEnter" },
       ft = { "go", "gomod" },
     },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = {
+        ensure_installed = { "go", "gomod" },
+      },
+    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
